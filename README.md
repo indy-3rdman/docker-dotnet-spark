@@ -9,14 +9,14 @@ You can get the pre-built images directly from the the docker hub at [https://hu
 Using this image you can
 
 - run a spark master and multiple slaves within the same container.
-- run spark master and slave instances in separate .
+- run spark master and slave instances in separate containers.
 - connect to a .NET for Apache Spark session in debug mode from Visual Studio or Visual Studio Code.
 
 More details about using the image are available at [3rdman.de](https://3rdman.de/tag/net-for-apache-spark/), or the docker hub page mentioned above.
 
 ## Building
 
-To build the image just run the build.sh bash script. You can adjust the related variables in the script to build for different versions of .NET core, .NET for Apache Spark and/or Apache Spark.
+To build the image just run the [build.sh](Linux/build.sh) bash script. You can adjust the related variables in the script to build for different versions of .NET core, .NET for Apache Spark and/or Apache Spark.
 
 
 ```bash
