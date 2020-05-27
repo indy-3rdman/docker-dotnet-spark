@@ -1,5 +1,7 @@
 # docker-dotnet-spark
 
+![Icon](resource/docker-dotnet-spark.png)
+
 ## Description
 
 This repository contains the source code to build a docker image that allows you to test out [.NET for Apache Spark](https://dotnet.microsoft.com/apps/data/spark).
@@ -73,3 +75,8 @@ For details about how to use the image for .NET for Apache Spark debugging, plea
 - [.NET for Apache Spark – UDF, VS2019, Docker for Windows and a Christmas Puzzle](https://3rdman.de/2019/12/net-for-apache-spark-udf-vs2019-docker-for-windows-and-a-christmas-puzzle/)
 
 - [Debug .NET for Apache Spark with Visual Studio and docker](https://3rdman.de/2019/10/debug-net-for-apache-spark-with-visual-studio-and-docker/)
+
+## Other References
+
+The unofficial .NET for Apache Spark logo at the top is an adaption of, and base on, the [Docker logo](https://en.wikipedia.org/wiki/Docker_(software)#/media/File:Docker_(container_engine)_logo.svg) and the [Apache Spark logo](https://en.wikipedia.org/wiki/Apache_Spark#/media/File:Apache_Spark_logo.svg).
+
