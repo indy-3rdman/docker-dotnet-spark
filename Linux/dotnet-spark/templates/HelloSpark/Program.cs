@@ -7,7 +7,7 @@ namespace HelloSpark
         static void Main(string[] args)
         {
             var spark = SparkSession.Builder().GetOrCreate();
-            var df = spark.Read().Json("people.json");
+            var df = spark.Read().Json("people.jsonl");
             df.Show();
         }
     }
