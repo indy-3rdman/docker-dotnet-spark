@@ -18,13 +18,14 @@ More details about using the image are available at [3rdman.de](https://3rdman.d
 
 ## Building
 
-To build the image just run the [build.sh](Linux/build.sh) bash script. You can adjust the related variables in the script to build for different versions of .NET core, .NET for Apache Spark and/or Apache Spark.
+To build the image just run the [build.sh](Linux/build.sh) bash script. You can adjust the related variables in the script to build for different versions of .NET core, .NET for Apache Spark and/or Apache Spark, as well as a proxy if you are behind one (please note that the `PROXY` variable will set for both HTTP and HTTPS — we might change that in the future).
 
 
 ```bash
 DOTNET_CORE_VERSION=3.1
-DOTNET_SPARK_VERSION=0.11.0
+DOTNET_SPARK_VERSION=0.12.1
 SPARK_VERSION=2.4.5
+PROXY="http://localhost:3128"
 ```
 
 Please note, that not all combinations are supported, however.
