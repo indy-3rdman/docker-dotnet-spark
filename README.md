@@ -18,7 +18,7 @@ More details about using the image are available at [3rdman.de](https://3rdman.d
 
 ## Building
 
-To build an image just run the [build.sh](build.sh) bash script. Per default it should build an image with the latest supported versions of .NET Core, Apache Spark and .NET for Apache Spark installed.
+To build an image just run the [build.sh](Linux/build.sh) bash script. Per default it should build an image with the latest supported versions of .NET Core, Apache Spark and .NET for Apache Spark installed.
 
 You can also build for different versions by specifying the options below.
 Please note, that not all combinations are supported, however.
