@@ -2,6 +2,11 @@
 
 ![Icon](resource/docker-dotnet-spark.png)
 
+
+
+[![Build status](https://ci.appveyor.com/api/projects/status/70p9mg7r670evo7m?svg=true)](https://ci.appveyor.com/project/indy/docker-dotnet-spark)
+
+
 ## Description
 
 This repository contains the source code to build a docker image that allows you to test out [.NET for Apache Spark](https://dotnet.microsoft.com/apps/data/spark).
