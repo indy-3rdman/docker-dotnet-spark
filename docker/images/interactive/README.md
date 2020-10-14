@@ -47,7 +47,7 @@ The three stages used in the build process are:
 To start a new container based on the dotnet-spark interactive image, just run the following command.
 
 ```bash
-docker run --name dotnet-spark-interactive -d -p 8888:8888 mcr.microsoft.com/dotnet-spark:interactive-latest
+docker run --name dotnet-spark-interactive -d -p 8888:8888 3rdman/dotnet-spark:interactive-latest
 ```
 
 After that, examine the logs of the container to get the correct URL that is required to connect to Juypter using the authentication token.

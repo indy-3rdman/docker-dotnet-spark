@@ -33,7 +33,7 @@ Please note, that not all version combinations are supported, however.
 As mentioned earlier, the dotnet-spark runtime image can be used in multiple ways. Below are some examples that might be useful.
 
 ```bash
-docker run --name dotnet-spark-dev -d mcr.microsoft.com/dotnet-spark:dev-latest
+docker run --name dotnet-spark-dev -d 3rdman/dotnet-spark:dev-latest
 ```
 
 ## Using the image to build from source
@@ -64,7 +64,7 @@ The image comes with code-server installed, which allows you run Visual Studio C
 First, start a container from the dev image and map the code-server port to a host port that is reachable via the loopback address only.
 
 ```bash
-docker run --name dotnet-spark-dev -d -p 127.0.0.1:8888:8080 mcr.microsoft.com/dotnet-spark:dev-latest
+docker run --name dotnet-spark-dev -d -p 127.0.0.1:8888:8080 3rdman/dotnet-spark:dev-latest
 ```
 
 ![launch](img/dotnet-dev-docker-code-server-launch.gif)

@@ -41,6 +41,7 @@ main() {
     # execute the different build stages
     cleanup
 
+    set_scala_version
     build_dotnet_sdk
     build_dotnet_spark_runtime_base
     build_dotnet_spark_runtime
@@ -75,11 +76,6 @@ opt_check_apache_spark_version() {
         apache_spark_version="${valid_version}"
         apache_spark_short_version="${apache_spark_version:0:3}"
     fi
-
-    case "${apache_spark_version:0:1}" in
-        2)   scala_version=2.11 ;;
-        3)   scala_version=2.12 ;;
-    esac
 }
 
 #######################################
@@ -142,6 +138,16 @@ replace_text_in_file() {
     local replacement_string="${3}"
 
     sh -c 'sed -i.bak "s/$1/$2/g" "$3" && rm "$3.bak"' _ "${search_string}" "${replacement_string}" "${filename}"
+}
+
+#######################################
+# Sets the Scala version depending on the Apache Spark version
+#######################################
+set_scala_version() {
+    case "${apache_spark_version:0:1}" in
+        2)   scala_version=2.11 ;;
+        3)   scala_version=2.12 ;;
+    esac
 }
 
 #######################################
