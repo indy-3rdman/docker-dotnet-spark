@@ -218,7 +218,6 @@ build_dotnet_spark_runtime() {
     cd apache-spark
     cp --recursive templates/scripts ./bin
 
-    # microsoft-spark-2.4.x-.jar 	microsoft-spark-2-4_2.11-1.0.0.jar
     replace_text_in_file bin/start-spark-debug.sh "microsoft-spark-X.X.X" "microsoft-spark-${msspark_short_string}_${scala_version}"
 
     build_image "${image_name}"

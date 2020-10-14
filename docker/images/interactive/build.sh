@@ -185,7 +185,7 @@ build_dotnet_spark_interactive_base() {
 #   A dotnet-spark docker image tagged with the Apache Spark version, .NET for Apache Spark version and the suffix -interactive
 #######################################
 build_dotnet_spark_interactive() {
-    local image_name="${image_repository}/dotnet-spark:${apache_spark_version}-${dotnet_spark_version}-interactive"
+    local image_name="${image_repository}/dotnet-spark:${dotnet_spark_version}-${apache_spark_version}-interactive"
     local msspark_short_string=${apache_spark_short_version//./-}
 
     cd apache-spark

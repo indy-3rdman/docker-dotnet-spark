@@ -18,7 +18,7 @@ readonly hadoop_version=2.7
 readonly sdk_image_tag="3.1-bionic"
 
 maven_version=3.6.3
-apache_spark_version=2.4.7
+apache_spark_version=3.0.1
 
 main() {
     # Parse the options an set the related variables
