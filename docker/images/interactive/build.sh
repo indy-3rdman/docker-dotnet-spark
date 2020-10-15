@@ -17,9 +17,9 @@ readonly supported_dotnet_spark_versions=("1.0.0")
 readonly dotnet_core_version=3.1
 
 dotnet_spark_version=1.0.0
+dotnet_spark_jar=""
 apache_spark_version=3.0.1
 apache_spark_short_version="${apache_spark_version:0:3}"
-scala_version=2.11
 
 main() {
     # Parse the options an set the related variables
@@ -39,7 +39,7 @@ main() {
     # execute the different build stages
     cleanup
 
-    set_scala_version
+    set_dotnet_spark_jar
     build_dotnet_interactive
     build_dotnet_spark_interactive_base
     build_dotnet_spark_interactive
@@ -120,13 +120,18 @@ replace_text_in_file() {
 }
 
 #######################################
-# Sets the Scala version depending on the Apache Spark version
+# Sets the microsoft-spark JAR name based on the Apache Spark version
 #######################################
-set_scala_version() {
+set_dotnet_spark_jar() {
+    local scala_version="2.11"
+    local short_spark_version="${apache_spark_short_version//./-}"
+
     case "${apache_spark_version:0:1}" in
         2)   scala_version=2.11 ;;
         3)   scala_version=2.12 ;;
     esac
+
+    dotnet_spark_jar="microsoft-spark-${short_spark_version}_${scala_version}-${dotnet_spark_version}.jar"
 }
 
 #######################################
@@ -138,7 +143,10 @@ set_scala_version() {
 #######################################
 build_image() {
     local image_name="${1}"
-    local build_args="--build-arg dotnet_core_version=${dotnet_core_version} --build-arg dotnet_spark_version=${dotnet_spark_version} --build-arg SPARK_VERSION=${apache_spark_version}"
+    local build_args="--build-arg dotnet_core_version=${dotnet_core_version}
+        --build-arg dotnet_spark_version=${dotnet_spark_version}
+        --build-arg SPARK_VERSION=${apache_spark_version}
+        --build-arg DOTNET_SPARK_JAR=${dotnet_spark_jar}"
     local cmd="docker build ${build_args} -t ${image_name} ."
 
     echo "Building ${image_name}"
@@ -168,7 +176,6 @@ build_dotnet_interactive() {
 #######################################
 build_dotnet_spark_interactive_base() {
     local image_name="dotnet-spark-interactive-base:${dotnet_spark_version}"
-    local msspark_short_string=${apache_spark_short_version//./-}
 
     cd dotnet-spark
     cp --recursive templates/HelloSpark ./HelloSpark
@@ -178,7 +185,7 @@ build_dotnet_spark_interactive_base() {
 
     replace_text_in_file HelloSpark/README.txt "netcoreappX.X" "netcoreapp${dotnet_core_version}"
     replace_text_in_file HelloSpark/README.txt "spark-X.X.X" "spark-${apache_spark_short_version}.x"
-    replace_text_in_file HelloSpark/README.txt "microsoft-spark-${apache_spark_short_version}.x-X.X.X.jar" "microsoft-spark-${msspark_short_string}_${scala_version}-${dotnet_spark_version}.jar"
+    replace_text_in_file HelloSpark/README.txt "microsoft-spark-${apache_spark_short_version}.x-X.X.X.jar" "${dotnet_spark_jar}"
 
     build_image "${image_name}"
     cd ~-
@@ -192,12 +199,11 @@ build_dotnet_spark_interactive_base() {
 #######################################
 build_dotnet_spark_interactive() {
     local image_name="${image_repository}/dotnet-spark:${dotnet_spark_version}-${apache_spark_version}-interactive"
-    local msspark_short_string=${apache_spark_short_version//./-}
 
     cd apache-spark
     cp --recursive templates/scripts ./bin
 
-    replace_text_in_file bin/start-spark-debug.sh "microsoft-spark-X.X.X" "microsoft-spark-${msspark_short_string}_${scala_version}"
+    replace_text_in_file bin/start-spark-debug.sh "microsoft-spark-X.X.X.jar" "${dotnet_spark_jar}"
 
     build_image "${image_name}"
     cd ~-

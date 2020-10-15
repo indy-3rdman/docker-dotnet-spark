@@ -2,6 +2,7 @@ ARG DOTNET_SPARK_VERSION=1.0.0
 FROM dotnet-spark-interactive-base:$DOTNET_SPARK_VERSION
 
 ARG SPARK_VERSION=3.0.1
+ARG DOTNET_SPARK_JAR="microsoft-spark-3-0_2.12-$DOTNET_SPARK_VERSION"
 
 ENV DAEMON_RUN=true
 ENV SPARK_VERSION=$SPARK_VERSION
@@ -23,8 +24,8 @@ RUN cd / \
     && mv spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} spark \
     && rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
     && chmod 755 /usr/local/bin/start-spark-debug.sh \
-    && cp /dotnet/Debug/netcoreapp${DOTNET_CORE_VERSION}/*.jar ${HOME}/dotnet.spark/ \
+    && cp /dotnet/Debug/netcoreapp${DOTNET_CORE_VERSION}/${DOTNET_SPARK_JAR} ${HOME}/dotnet.spark/ \
     && chown -R ${NB_UID} ${HOME}
 
-USER ${USER}
+USER ${NB_USER}
 WORKDIR ${HOME}/dotnet.spark
