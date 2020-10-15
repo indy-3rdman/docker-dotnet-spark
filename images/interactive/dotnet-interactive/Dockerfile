@@ -32,7 +32,8 @@ RUN apt-get update \
     && apt-get install -y apt-transport-https \
     && apt-get update \
     && apt-get install -y dotnet-sdk-$DOTNET_CORE_VERSION \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    && apt-get clean && rm -rf /var/lib/apt/lists/* \
+    && rm -rf packages-microsoft-prod.deb
 
 COPY ./nuget.config ${HOME}/nuget.config
 

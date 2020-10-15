@@ -34,13 +34,13 @@ The three stages used in the build process are:
 
   Builds on the jupyter/base-notebook image and installs the .NET Core SDK, along with Microsoft.DotNet.Interactive.
 
-- ### **dotnet-spark-interactive-base**
+- ### **dotnet-spark-base (interactive)**
 
   Adds the specified .NET for Apache Spark version to the dotnet-interactive image and also copies/builds the HelloSpark example into the image. HelloSpark is also use to install the correct microsoft-spark-*.jar version that is required to start a spark-submit session in debug mode.
 
 - ### **dotnet-spark (interactive)**
 
-  Gets/installs the specified Apache Spark version and add the example notebooks.
+  Gets/installs the specified Apache Spark version and adds the example notebooks.
 
 ## Docker Run Example
 

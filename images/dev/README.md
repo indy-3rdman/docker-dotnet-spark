@@ -7,7 +7,6 @@ Using this image, you can compile .NET for Apache Spark yourself.
 
 If you do not want to build those images yourself, you can get our pre-built images directly from docker hub at [https://hub.docker.com/r/3rdman/dotnet-spark](https://hub.docker.com/r/3rdman/dotnet-spark).
 
-
 ## Building
 
 To build a dev image, just run the [build.sh](build.sh) bash script. The default Apache Spark and Maven versions used to build the image are defined in the script.
@@ -26,7 +25,6 @@ build.sh -h
 ```
 
 Please note, that not all version combinations are supported, however.
-
 
 ## Docker Run Example
 

@@ -1,5 +1,5 @@
 ARG DOTNET_SPARK_VERSION=1.0.0
-FROM dotnet-spark-runtime-base:$DOTNET_SPARK_VERSION
+FROM dotnet-spark-base-runtime:$DOTNET_SPARK_VERSION
 
 ARG SPARK_VERSION=3.0.1
 

@@ -12,7 +12,7 @@ By using these images, you can run and debug your .NET for Apache Spark projects
 
 If you do not want to build those images yourself, you can get our pre-built images directly from docker hub at [https://hub.docker.com/r/3rdman/dotnet-spark](https://hub.docker.com/r/3rdman/dotnet-spark).
 
-Additional information on how to use the images can be found under [3rdman.de](https://3rdman.de/tag/net-for-apache-spark/), or the docker hub page mentioned above.
+Additional information on how to use the images can be found at [3rdman.de](https://3rdman.de/tag/net-for-apache-spark/), or the docker hub page mentioned above.
 
 ## Building
 
@@ -31,7 +31,6 @@ For more details please run
 build.sh -h
 ```
 
-
 Please note, that not all version combinations are supported, however.
 
 ## The image build stages
@@ -45,7 +44,7 @@ The three stages used in the build process are:
 
   Downloads and installs the specified .NET Core SDK into a base Ubuntu 18.04 image along with some other tools that might be required by later stages or for debugging. The resulting image is tagged with the .NET Core version number.
 
-- ### **dotnet-spark-runtime-base**
+- ### **dotnet-spark-base (runtime)**
 
   Adds the specified .NET for Apache Spark version to the dotnet-sdk image and also copies/builds the HelloSpark example into the image. HelloSpark is also use to install the correct microsoft-spark-*.jar version that is required for using the image for debugging [debugging .NET for Apache Spark](https://docs.microsoft.com/en-us/dotnet/spark/how-to-guides/debug) via Visual Studio, or Visual Studio Code.
 
