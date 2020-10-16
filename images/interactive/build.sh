@@ -205,6 +205,8 @@ build_dotnet_spark_interactive() {
 
     replace_text_in_file bin/start-spark-debug.sh "microsoft-spark-X.X.X.jar" "${dotnet_spark_jar}"
 
+    replace_text_in_file 02-basic-example.ipynb "nuget: Microsoft.Spark,X.X.X" "${dotnet_spark_version}"
+
     build_image "${image_name}"
     cd ~-
 }
