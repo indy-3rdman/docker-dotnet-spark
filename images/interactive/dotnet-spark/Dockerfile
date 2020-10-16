@@ -16,6 +16,7 @@ ENV JUPYTER_ENABLE_LAB=true
 USER root
 
 COPY bin/* /usr/local/bin/
+
 COPY *.ipynb ${HOME}/dotnet.spark/examples/
 
 RUN cd / \
