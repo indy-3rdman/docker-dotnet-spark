@@ -2,7 +2,7 @@
 
 ![Icon](resource/docker-dotnet-spark.png)
 
-[![Build status](https://ci.appveyor.com/api/projects/status/70p9mg7r670evo7m?svg=true)](https://ci.appveyor.com/project/indy/docker-dotnet-spark) &nbsp;&nbsp; [![Binder](resource/dotnet-spark-binder.svg)](https://mybinder.org/v2/gh/indy-3rdman/docker-dotnet-spark?urlpath=lab/tree/) 
+[![Build status](https://ci.appveyor.com/api/projects/status/70p9mg7r670evo7m?svg=true)](https://ci.appveyor.com/project/indy/docker-dotnet-spark) &nbsp;&nbsp; [![Binder](resource/dotnet-spark-binder.svg)](https://mybinder.org/v2/gh/indy-3rdman/docker-dotnet-spark?urlpath=lab/tree/)
 
 ## Description
 
