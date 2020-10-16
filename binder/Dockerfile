@@ -1,0 +1,1 @@
+FROM 3rdman/dotnet-spark:interactive-latest
