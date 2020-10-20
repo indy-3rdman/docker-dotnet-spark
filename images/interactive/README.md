@@ -2,11 +2,11 @@
 
 ## Description
 
-This directory contains the source code to build a docker interactive image by using the [jupyter/base-notebook](https://hub.docker.com/r/jupyter/base-notebook) as foundation.
+This directory contains the source code to build a docker interactive image by using [jupyter/base-notebook](https://hub.docker.com/r/jupyter/base-notebook) as foundation.
 
 ## Building
 
-To build the image run the [build.sh](build.sh) bash script. Per default it should build an image using the latest supported versions of .NET Core, Apache Spark and .NET for Apache Spark.
+To build the image, just execute the [build.sh](build.sh) bash script. Per default it should build an image using the latest supported versions of .NET Core, Apache Spark and .NET for Apache Spark.
 
 You can also build for different versions, by specifying one of the following options:
 
@@ -62,4 +62,8 @@ It is important to start the .NET for Apache Spark backend in debug mode first, 
 
 The helper script start-spark-debug.sh can do this for you, as demonstrated below.
 
-![example](img/dotnet-interactive-docker-example.gif)
+![debug](img/dotnet-interactive-start-debug.gif)
+
+Once the backend is running, please open 02-basic-example.ipynb to learn how you can use .NET for Apache Spark in your own notebooks.
+
+![example](img/dotnet-interactive-basic-example.gif)
