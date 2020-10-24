@@ -215,7 +215,7 @@ build_dotnet_spark_base_runtime() {
 # Use the Dockerfile in the sub-folder dotnet-spark to build the image of the last stage
 # The image contains the specified Apache Spark version
 # Result:
-#   A dotnet-spark docker image tagged with the Apache Spark version, .NET for Apache Spark version and the suffix -runtime
+#   A dotnet-spark docker image tagged with the .NET for Apache Spark version and the Apache Spark version.
 #######################################
 build_dotnet_spark_runtime() {
     local image_name="${image_repository}/dotnet-spark:${dotnet_spark_version}-${apache_spark_version}"

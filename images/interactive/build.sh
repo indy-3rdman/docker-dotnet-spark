@@ -169,8 +169,7 @@ build_dotnet_interactive() {
 
 #######################################
 # Use the Dockerfile in the sub-folder dotnet-spark-base to build the image of the second stage
-# The image contains the specified .NET for Apache Spark version plus the HelloSpark example
-#   for the correct TargetFramework and Microsoft.Spark package version
+# The image contains the specified .NET for Apache Spark version
 # Result:
 #   A dotnet-spark-base-interactive docker image tagged with the .NET for Apache Spark version
 #######################################
@@ -178,15 +177,6 @@ build_dotnet_spark_base_interactive() {
     local image_name="dotnet-spark-base-interactive:${dotnet_spark_version}"
 
     cd dotnet-spark-base
-    cp --recursive templates/HelloSpark ./HelloSpark
-
-    replace_text_in_file HelloSpark/HelloSpark.csproj "<TargetFramework><\/TargetFramework>" "<TargetFramework>netcoreapp${dotnet_core_version}<\/TargetFramework>"
-    replace_text_in_file HelloSpark/HelloSpark.csproj "PackageReference Include=\"Microsoft.Spark\" Version=\"\"" "PackageReference Include=\"Microsoft.Spark\" Version=\"${dotnet_spark_version}\""
-
-    replace_text_in_file HelloSpark/README.txt "netcoreappX.X" "netcoreapp${dotnet_core_version}"
-    replace_text_in_file HelloSpark/README.txt "spark-X.X.X" "spark-${apache_spark_short_version}.x"
-    replace_text_in_file HelloSpark/README.txt "microsoft-spark-${apache_spark_short_version}.x-X.X.X.jar" "${dotnet_spark_jar}"
-
     build_image "${image_name}"
     cd ~-
 }
@@ -202,6 +192,14 @@ build_dotnet_spark_interactive() {
 
     cd dotnet-spark
     cp --recursive templates/scripts ./bin
+    cp --recursive templates/HelloSpark ./HelloSpark
+
+    replace_text_in_file HelloSpark/HelloSpark.csproj "<TargetFramework><\/TargetFramework>" "<TargetFramework>netcoreapp${dotnet_core_version}<\/TargetFramework>"
+    replace_text_in_file HelloSpark/HelloSpark.csproj "PackageReference Include=\"Microsoft.Spark\" Version=\"\"" "PackageReference Include=\"Microsoft.Spark\" Version=\"${dotnet_spark_version}\""
+
+    replace_text_in_file HelloSpark/README.txt "netcoreappX.X" "netcoreapp${dotnet_core_version}"
+    replace_text_in_file HelloSpark/README.txt "spark-X.X.X" "spark-${apache_spark_short_version}.x"
+    replace_text_in_file HelloSpark/README.txt "microsoft-spark-${apache_spark_short_version}.x-X.X.X.jar" "${dotnet_spark_jar}"
 
     replace_text_in_file bin/start-spark-debug.sh "microsoft-spark-X.X.X.jar" "${dotnet_spark_jar}"
 
@@ -218,8 +216,6 @@ cleanup()
 {
     cd dotnet-spark
     rm --recursive --force bin
-    cd ~-
-    cd dotnet-spark-base
     rm --recursive --force HelloSpark
     cd ~-
 }
