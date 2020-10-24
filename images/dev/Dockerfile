@@ -9,8 +9,8 @@ ARG SPARK_VERSION=3.0.1
 
 ENV DAEMON_RUN=true \
     M2_HOME=/usr/local/bin/maven/current \
-    SPARK_HOME=/spark \
-    PATH="${PATH}:${SPARK_HOME}/bin:${M2_HOME}/bin"
+    SPARK_HOME=/spark
+ENV PATH="${PATH}:${SPARK_HOME}/bin:${M2_HOME}/bin"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
