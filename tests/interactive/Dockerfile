@@ -1,0 +1,9 @@
+ARG SPARK_VERSION=3.0.1
+ARG DOTNET_SPARK_VERSION=1.0.0
+FROM 3rdman/dotnet-spark:$DOTNET_SPARK_VERSION-$SPARK_VERSION-interactive
+
+USER root
+
+COPY nb-test.py ${HOME}/
+
+USER ${NB_USER}
