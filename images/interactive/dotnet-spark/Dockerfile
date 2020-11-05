@@ -1,4 +1,4 @@
-ARG DOTNET_SPARK_VERSION=1.0.0
+ARG DOTNET_SPARK_VERSION=1.0.1
 FROM dotnet-spark-base-interactive:$DOTNET_SPARK_VERSION
 LABEL maintainer="Martin Kandlbinder <indy@3rdman.de>"
 
