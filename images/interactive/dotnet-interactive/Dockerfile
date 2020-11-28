@@ -33,5 +33,5 @@ COPY ./nuget.config ${HOME}/nuget.config
 USER ${NB_USER}
 
 RUN pip install nteract_on_jupyter \
-    && dotnet tool install -g Microsoft.dotnet-interactive \
+    && dotnet tool install -g Microsoft.dotnet-interactive --version 1.0.148003 \
     && dotnet interactive jupyter install
