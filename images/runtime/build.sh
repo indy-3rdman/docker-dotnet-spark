@@ -11,13 +11,13 @@ readonly image_repository='3rdman'
 readonly supported_apache_spark_versions=(
     "2.3.0" "2.3.1" "2.3.2" "2.3.3" "2.3.4"
     "2.4.0" "2.4.1" "2.4.3" "2.4.4" "2.4.5" "2.4.6" "2.4.7"
-    "3.0.0" "3.0.1"
+    "3.0.0" "3.0.1" "3.0.2"
     )
 readonly supported_dotnet_spark_versions=("1.0.0" "1.1.1")
 readonly dotnet_core_version=3.1
 
 dotnet_spark_version=1.1.1
-apache_spark_version=3.0.1
+apache_spark_version=3.0.2
 apache_spark_short_version="${apache_spark_version:0:3}"
 scala_version=2.11
 proxy=""

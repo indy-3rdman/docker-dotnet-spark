@@ -2,7 +2,7 @@ ARG DOTNET_SPARK_VERSION=1.1.1
 FROM dotnet-spark-base-runtime:$DOTNET_SPARK_VERSION
 LABEL maintainer="Martin Kandlbinder <indy@3rdman.de>"
 
-ARG SPARK_VERSION=3.0.1
+ARG SPARK_VERSION=3.0.2
 ENV DAEMON_RUN=true \
     HADOOP_VERSION=2.7 \
     SPARK_DEBUG_DISABLED="" \

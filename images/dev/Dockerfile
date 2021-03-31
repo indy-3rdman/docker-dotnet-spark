@@ -5,7 +5,7 @@ LABEL maintainer="Martin Kandlbinder <indy@3rdman.de>"
 ARG DEBIAN_FRONTEND=noninteractive
 ARG HADOOP_VERSION=2.7
 ARG MAVEN_VERSION=3.6.3
-ARG SPARK_VERSION=3.0.1
+ARG SPARK_VERSION=3.0.2
 
 ENV DAEMON_RUN=true \
     M2_HOME=/usr/local/bin/maven/current \
