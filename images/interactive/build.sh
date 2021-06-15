@@ -15,9 +15,9 @@ readonly supported_apache_spark_versions=(
 readonly supported_dotnet_spark_versions=("1.0.0" "1.1.1" "2.0.0")
 readonly dotnet_core_version=3.1
 
-DOTNET_SPARK_VERSION=2.0.0
+dotnet_spark_version=2.0.0
 dotnet_spark_jar=""
-apache_SPARK_VERSION=3.1.2
+apache_spark_version=3.1.2
 apache_spark_short_version="${apache_spark_version:0:3}"
 
 main() {
