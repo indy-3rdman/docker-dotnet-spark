@@ -19,7 +19,7 @@ COPY bin/* /usr/local/bin/
 COPY *.ipynb ${HOME}/dotnet.spark/examples/
 
 RUN cd /dotnet \
-    && dotnet new console -o SparkDummy \
+    && dotnet new console --output SparkDummy --framework netcoreapp3.1 \
     && cd SparkDummy \
     && dotnet add package Microsoft.Spark \
     && dotnet build \

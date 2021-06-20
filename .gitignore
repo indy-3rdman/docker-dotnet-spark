@@ -8,3 +8,6 @@ images/interactive/dotnet-spark/HelloSpark/
 images/interactive/dotnet-spark/bin/
 images/runtime/dotnet-spark/HelloSpark/
 images/runtime/dotnet-spark/bin/
+
+# Local helper files
+.local
