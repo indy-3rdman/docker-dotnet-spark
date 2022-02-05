@@ -30,7 +30,7 @@ RUN apt-get update \
 RUN mkdir -p /usr/local/bin/maven \
     && cd /usr/local/bin/maven  \
     && echo "Downloading apache-maven-${MAVEN_VERSION}-bin.tar.gz ..." \
-    && wget -q https://www-us.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz  \
+    && wget -q https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz  \
     && tar -xvzf apache-maven-${MAVEN_VERSION}-bin.tar.gz  \
     && ln -s apache-maven-${MAVEN_VERSION} current  \
     && rm apache-maven-${MAVEN_VERSION}-bin.tar.gz \
