@@ -1,9 +1,9 @@
-ARG DOTNET_SPARK_VERSION=1.0.0
+ARG DOTNET_SPARK_VERSION=2.1.0
 FROM dotnet-spark-base-interactive:$DOTNET_SPARK_VERSION
 LABEL maintainer="Martin Kandlbinder <indy@3rdman.de>"
 
-ARG SPARK_VERSION=3.0.1
-ARG DOTNET_SPARK_JAR="microsoft-spark-3-0_2.12-$DOTNET_SPARK_VERSION"
+ARG SPARK_VERSION=3.2.1
+ARG DOTNET_SPARK_JAR="microsoft-spark-3-2_2.12-$DOTNET_SPARK_VERSION"
 
 ENV DAEMON_RUN=true \
     DOTNETBACKEND_PORT=5567 \
@@ -19,7 +19,7 @@ COPY bin/* /usr/local/bin/
 COPY *.ipynb ${HOME}/dotnet.spark/examples/
 
 RUN cd /dotnet \
-    && dotnet new console -o SparkDummy \
+    && dotnet new console --output SparkDummy --framework netcoreapp3.1 \
     && cd SparkDummy \
     && dotnet add package Microsoft.Spark \
     && dotnet build \

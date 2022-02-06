@@ -1,13 +1,13 @@
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+# Visual Studio Code
+.vscode/
+.history/
 *.code-workspace
 
-# Local History for Visual Studio Code
-.history/
+# Files created during build
+images/interactive/dotnet-spark/HelloSpark/
+images/interactive/dotnet-spark/bin/
+images/runtime/dotnet-spark/HelloSpark/
+images/runtime/dotnet-spark/bin/
 
-# Files created after build
-Linux/dotnet-spark/HelloSpark
-Linux/spark/sbin
+# Local helper files
+.local

@@ -9,16 +9,15 @@ set -o pipefail  # don't hide errors within pipes
 
 readonly image_repository='3rdman'
 readonly supported_apache_spark_versions=(
-    "2.3.0" "2.3.1" "2.3.2" "2.3.3" "2.3.4"
-    "2.4.0" "2.4.1" "2.4.3" "2.4.4" "2.4.5" "2.4.6" "2.4.7"
-    "3.0.0" "3.0.1"
+    "2.4.0" "2.4.1" "2.4.3" "2.4.4" "2.4.5" "2.4.6" "2.4.7" "2.4.8"
+    "3.0.0" "3.0.1" "3.0.2" "3.1.1" "3.1.2" "3.2.0" "3.2.1"
     )
 readonly supported_maven_versions=("3.6.3")
 readonly hadoop_version=2.7
 readonly sdk_image_tag="3.1-bionic"
 
 maven_version=3.6.3
-apache_spark_version=3.0.1
+apache_spark_version=3.2.1
 
 main() {
     # Parse the options an set the related variables
