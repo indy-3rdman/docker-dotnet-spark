@@ -1,4 +1,4 @@
-ARG DOTNET_SPARK_VERSION=2.1.0
+ARG DOTNET_SPARK_VERSION=2.1.1
 FROM dotnet-spark-base-interactive:$DOTNET_SPARK_VERSION
 LABEL maintainer="Martin Kandlbinder <indy@3rdman.de>"
 
@@ -7,7 +7,7 @@ ARG DOTNET_SPARK_JAR="microsoft-spark-3-2_2.12-$DOTNET_SPARK_VERSION"
 
 ENV DAEMON_RUN=true \
     DOTNETBACKEND_PORT=5567 \
-    HADOOP_VERSION=2.7 \
+    HADOOP_VERSION=3.2 \
     JUPYTER_ENABLE_LAB=true \
     SPARK_VERSION=$SPARK_VERSION \
     SPARK_HOME=/spark \

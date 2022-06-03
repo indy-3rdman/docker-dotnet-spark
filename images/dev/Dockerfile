@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:$SDK_IMAGE_TAG
 LABEL maintainer="Martin Kandlbinder <indy@3rdman.de>"
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG HADOOP_VERSION=2.7
+ARG HADOOP_VERSION=3.2
 ARG MAVEN_VERSION=3.6.3
 ARG SPARK_VERSION=3.2.1
 

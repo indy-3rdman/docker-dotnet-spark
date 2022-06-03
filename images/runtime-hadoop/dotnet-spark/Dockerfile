@@ -1,10 +1,12 @@
 ARG DOTNET_SPARK_VERSION=2.1.1
-FROM dotnet-spark-base-runtime:$DOTNET_SPARK_VERSION
+ARG HADOOP_VERSION=3.3.3
+
+FROM dotnet-spark-hadoop-runtime:$HADOOP_VERSION
 LABEL maintainer="Martin Kandlbinder <indy@3rdman.de>"
 
 ARG SPARK_VERSION=3.2.1
 ENV DAEMON_RUN=true \
-    HADOOP_VERSION=3.2 \
+    HADOOP_SHORT_VERSION=3.2 \
     SPARK_DEBUG_DISABLED="" \
     SPARK_HOME=/spark \
     SPARK_MASTER_DISABLED="" \
@@ -28,14 +30,16 @@ RUN mkdir /tempdata \
     && dotnet build \
     && cp /dotnet/HelloSpark/bin/Debug/netcoreapp${DOTNET_CORE_VERSION}/microsoft-spark-*.jar /dotnet/Debug/netcoreapp${DOTNET_CORE_VERSION}/ \
     && cd / \
-    && echo "Downloading spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz ..." \
-    && wget -q https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
-    && tar -xvzf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
-    && mv spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} spark \
-    && rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
+    && echo "Downloading spark-${SPARK_VERSION}-bin-without-hadoop.tgz ..." \
+    && wget -q https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-without-hadoop.tgz \
+    && tar -xvzf spark-${SPARK_VERSION}-bin-without-hadoop.tgz \
+    && mv spark-${SPARK_VERSION}-bin-without-hadoop spark \
+    && rm spark-${SPARK_VERSION}-bin-without-hadoop.tgz \
     && chmod 755 /usr/local/bin/start-spark-slave.sh \
     && chmod 755 /usr/local/bin/start-spark-master.sh \
-    && chmod 755 /usr/local/bin/start-spark-debug.sh
+    && chmod 755 /usr/local/bin/start-spark-debug.sh \
+    && echo "SPARK_DIST_CLASSPATH=$(hadoop classpath):$HADOOP_HOME/share/hadoop/tools/lib/*" > spark/conf/spark-env.sh \
+    && chmod 755 spark/conf/spark-env.sh
 
 EXPOSE 8080 8081 7077 6066 5567 4040
 
