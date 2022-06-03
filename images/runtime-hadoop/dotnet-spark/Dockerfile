@@ -1,6 +1,6 @@
-ARG DOTNET_SPARK_VERSION=2.1.0
-ARG HADOOP_VERSION=3.2.3
-#FROM dotnet-spark-base-runtime:$DOTNET_SPARK_VERSION
+ARG DOTNET_SPARK_VERSION=2.1.1
+ARG HADOOP_VERSION=3.3.3
+
 FROM dotnet-spark-hadoop-runtime:$HADOOP_VERSION
 LABEL maintainer="Martin Kandlbinder <indy@3rdman.de>"
 
@@ -38,7 +38,7 @@ RUN mkdir /tempdata \
     && chmod 755 /usr/local/bin/start-spark-slave.sh \
     && chmod 755 /usr/local/bin/start-spark-master.sh \
     && chmod 755 /usr/local/bin/start-spark-debug.sh \
-    && echo "SPARK_DIST_CLASSPATH=$(hadoop classpath)" > spark/conf/spark-env.sh \
+    && echo "SPARK_DIST_CLASSPATH=$(hadoop classpath):$HADOOP_HOME/share/hadoop/tools/lib/*" > spark/conf/spark-env.sh \
     && chmod 755 spark/conf/spark-env.sh
 
 EXPOSE 8080 8081 7077 6066 5567 4040

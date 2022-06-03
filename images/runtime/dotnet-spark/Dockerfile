@@ -1,4 +1,4 @@
-ARG DOTNET_SPARK_VERSION=2.1.0
+ARG DOTNET_SPARK_VERSION=2.1.1
 FROM dotnet-spark-base-runtime:$DOTNET_SPARK_VERSION
 LABEL maintainer="Martin Kandlbinder <indy@3rdman.de>"
 

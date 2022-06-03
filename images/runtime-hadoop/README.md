@@ -2,7 +2,7 @@
 
 ## Description
 
-This directory contains the source code to build the docker runtime images for different versions of .NET for Apache Spark and [Apache Spark](https://spark.apache.org).
+This directory contains the source code to build the docker runtime images for different versions of .NET for Apache Spark and [Apache Spark](https://spark.apache.org), including a full Apache Hadoop installation.
 
 By using these images, you can run and debug your .NET for Apache Spark projects inside a docker container, without the need to set up all required dependencies yourself. This means that you, for example, can
 
@@ -16,13 +16,14 @@ Additional information on how to use the images can be found at [3rdman.de](http
 
 ## Building
 
-To build an image just run the [build.sh](build.sh) bash script. Per default it should build an image with the latest supported versions of .NET Core, Apache Spark and .NET for Apache Spark installed.
+To build an image just run the [build.sh](build.sh) bash script. Per default, it should build an image with the supported versions of .NET Core, Apache Hadoop, Apache Spark and .NET for Apache Spark installed.
 
 You can also build for different versions by specifying one of the following options:
 
 ```bash
     -a, --apache-spark
     -d, --dotnet-spark
+    -o, --hadoop
 ```
 
 For more details please run
@@ -36,9 +37,7 @@ Please note, that not all version combinations are supported, however.
 ## The image build stages
 
 Using different stages makes sense to efficiently build multiple images that are based on the same .NET core SDK, but are using different .NET for Apache Spark or Apache Spark versions.
-In that way, dependencies (e.g. .NET core SDK) do not have to be downloaded again and again, while building images for the  different versions. This saves time and bandwidth.
-
-The three stages used in the build process are:
+In that way, dependencies (e.g. .NET core SDK) do not have to be downloaded again and again, while building images for the different versions. This saves time and bandwidth.
 
 - ### **dotnet-sdk**
 
@@ -50,6 +49,10 @@ The three stages used in the build process are:
 
 
   ![Debug](img/dotnet-spark-vsc-debug.gif)
+
+- ### **dotnet-spark-hadoop (runtime)**
+
+  Downloads and installs the specified Apache Hadoop version separately, instead of using the pre-built version that is bundled with Apache Spark.
 
 - ### **dotnet-spark (runtime)**
 

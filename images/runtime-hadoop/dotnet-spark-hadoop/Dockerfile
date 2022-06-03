@@ -1,8 +1,8 @@
-ARG DOTNET_SPARK_VERSION=2.1.0
+ARG DOTNET_SPARK_VERSION=2.1.1
 FROM dotnet-spark-base-runtime:$DOTNET_SPARK_VERSION
 LABEL maintainer="Martin Kandlbinder <indy@3rdman.de>"
 
-ARG HADOOP_VERSION=3.2.3
+ARG HADOOP_VERSION=3.3.3
 
 RUN echo "Downloading hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz ..." \
     && wget -q https://archive.apache.org/dist/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz \

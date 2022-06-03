@@ -12,12 +12,16 @@ readonly supported_apache_spark_versions=(
     "2.4.0" "2.4.1" "2.4.3" "2.4.4" "2.4.5" "2.4.6" "2.4.7" "2.4.8"
     "3.0.0" "3.0.1" "3.0.2" "3.1.1" "3.1.2" "3.2.0" "3.2.1"
     )
-readonly supported_dotnet_spark_versions=("1.0.0" "1.1.1" "2.0.0" "2.1.0")
+readonly supported_dotnet_spark_versions=("1.0.0" "1.1.1" "2.0.0" "2.1.0" "2.1.1")
+readonly supported_hadoop_versions=(
+    "2.7.7" "2.8.5" "2.9.2"
+    "3.0.3" "3.1.4" "3.2.3" "3.3.3"
+    )
 readonly dotnet_core_version=3.1
 
-dotnet_spark_version=2.1.0
+dotnet_spark_version=2.1.1
 apache_spark_version=3.2.1
-hadoop_version=3.2.3
+hadoop_version=3.3.3
 apache_spark_short_version="${apache_spark_version:0:3}"
 scala_version=2.11
 proxy=""
@@ -28,6 +32,7 @@ main() {
         case "${1}" in
             -a|--apache-spark) opt_check_apache_spark_version "${2}"; shift ;;
             -d|--dotnet-spark) opt_check_dotnet_spark_version "${2}"; shift ;;
+            -o|--hadoop) opt_check_hadoop_version "${2}"; shift ;;
             -p|--proxy) opt_check_proxy "${2}"; shift;;
             -h|--help) print_help
                 exit 1 ;;
@@ -102,6 +107,32 @@ opt_check_dotnet_spark_version() {
         exit 1 ;
     else
         dotnet_spark_version="${valid_version}"
+    fi
+}
+
+#######################################
+# Checks if the provided Hadoop version number is supported
+# Arguments:
+#   The version number string
+# Result:
+#   Sets the global variable hadoop_version if supported,
+#       otherwise exits with a related message
+#######################################
+opt_check_hadoop_version() {
+    local provided_version="${1}"
+    local valid_version=""
+
+    for value in "${supported_hadoop_versions[@]}"
+    do
+        [[ "${provided_version}" = "$value" ]] && valid_version="${provided_version}"
+    done
+
+    if [ -z "${valid_version}" ]
+    then
+        echo "${provided_version} is an unsupported Hadoop version."
+        exit 1 ;
+    else
+        hadoop_version="${valid_version}"
     fi
 }
 
@@ -205,7 +236,7 @@ build_dotnet_spark_base_runtime() {
 # Use the Dockerfile in the sub-folder haddop to build the image of the third stage
 # The image contains a full hadoop installation
 # Result:
-#   A dotnet-spark-base-runtime docker image tagged with the .NET for Apache Spark version
+#   A dotnet-spark-hadoop-runtime docker image tagged with the hadoop version
 #######################################
 build_dotnet_spark_hadoop_runtime() {
     local image_name="dotnet-spark-hadoop-runtime:${hadoop_version}"
