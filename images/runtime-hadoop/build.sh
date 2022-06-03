@@ -10,7 +10,7 @@ set -o pipefail  # don't hide errors within pipes
 readonly image_repository='3rdman'
 readonly supported_apache_spark_versions=(
     "2.4.0" "2.4.1" "2.4.3" "2.4.4" "2.4.5" "2.4.6" "2.4.7" "2.4.8"
-    "3.0.0" "3.0.1" "3.0.2" "3.1.1" "3.1.2" "3.1.3" "3.2.0" "3.2.1"
+    "3.0.0" "3.0.1" "3.0.2" "3.0.3" "3.1.1" "3.1.2" "3.1.3" "3.2.0" "3.2.1"
     )
 readonly supported_dotnet_spark_versions=("1.0.0" "1.1.1" "2.0.0" "2.1.0" "2.1.1")
 readonly supported_hadoop_versions=(
@@ -191,7 +191,7 @@ set_scala_version() {
 #######################################
 build_image() {
     local image_name="${1}"
-    local build_args="--build-arg DOTNET_CORE_VERSION=${dotnet_core_version} --build-arg DOTNET_SPARK_VERSION=${dotnet_spark_version} --build-arg SPARK_VERSION=${apache_spark_version}"
+    local build_args="--build-arg DOTNET_CORE_VERSION=${dotnet_core_version} --build-arg DOTNET_SPARK_VERSION=${dotnet_spark_version} --build-arg HADOOP_VERSION=${hadoop_version}"
     local cmd="docker build ${build_args} -t ${image_name} ."
 
     if [ -n "${proxy}" ]
