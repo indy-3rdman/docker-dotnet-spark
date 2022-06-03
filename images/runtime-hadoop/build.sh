@@ -191,7 +191,7 @@ set_scala_version() {
 #######################################
 build_image() {
     local image_name="${1}"
-    local build_args="--build-arg DOTNET_CORE_VERSION=${dotnet_core_version} --build-arg DOTNET_SPARK_VERSION=${dotnet_spark_version} --build-arg HADOOP_VERSION=${hadoop_version}"
+    local build_args="--build-arg DOTNET_CORE_VERSION=${dotnet_core_version} --build-arg DOTNET_SPARK_VERSION=${dotnet_spark_version} --build-arg SPARK_VERSION=${apache_spark_version} --build-arg HADOOP_VERSION=${hadoop_version}"
     local cmd="docker build ${build_args} -t ${image_name} ."
 
     if [ -n "${proxy}" ]
