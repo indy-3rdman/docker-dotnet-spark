@@ -13,7 +13,7 @@ readonly supported_apache_spark_versions=(
     "3.0.0" "3.0.1" "3.0.2" "3.1.1" "3.1.2" "3.2.0" "3.2.1"
     )
 readonly supported_maven_versions=("3.6.3")
-readonly hadoop_version=2.7
+readonly hadoop_version=3.2
 readonly sdk_image_tag="3.1-bionic"
 
 maven_version=3.6.3

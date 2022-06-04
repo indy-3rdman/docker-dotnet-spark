@@ -24,6 +24,10 @@ Currently, there are three different image types.
 
   Lets you play around with .NET for Apache Spark in an Interactive Notebook.
 
+- [runtime-hadoop](images/runtime-hadoop/README.md)
+
+  Same as the runtime image, but with a full Hadoop version
+
 ## Other References
 
 The unofficial .NET for Apache Spark logo at the top is an adaption of, and base on, the [Docker logo](https://en.wikipedia.org/wiki/Docker_(software)#/media/File:Docker_(container_engine)_logo.svg) and the [Apache Spark logo](https://en.wikipedia.org/wiki/Apache_Spark#/media/File:Apache_Spark_logo.svg).
