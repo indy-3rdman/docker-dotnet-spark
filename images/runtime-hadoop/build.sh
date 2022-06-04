@@ -191,7 +191,10 @@ set_scala_version() {
 #######################################
 build_image() {
     local image_name="${1}"
-    local build_args="--build-arg DOTNET_CORE_VERSION=${dotnet_core_version} --build-arg DOTNET_SPARK_VERSION=${dotnet_spark_version} --build-arg SPARK_VERSION=${apache_spark_version} --build-arg HADOOP_VERSION=${hadoop_version}"
+    local build_args="--build-arg DOTNET_CORE_VERSION=${dotnet_core_version}
+        --build-arg DOTNET_SPARK_VERSION=${dotnet_spark_version}
+        --build-arg SPARK_VERSION=${apache_spark_version}
+        --build-arg HADOOP_VERSION=${hadoop_version}"
     local cmd="docker build ${build_args} -t ${image_name} ."
 
     if [ -n "${proxy}" ]
@@ -304,13 +307,15 @@ Builds a .NET for Apache Spark runtime docker image
 Options:
     -a, --apache-spark    A supported Apache Spark version to be used within the image
     -d, --dotnet-spark    The .NET for Apache Spark version to be used within the image
+    -o, --hadoop          Hadoop version (e.g. 2.7.7 or 3.2.3)
     -p, --proxy           Proxy to be used in case no direct access to the internet is available
     -h, --help            Show this usage help
 
 If -a or -d is not defined, default values are used
 
-Apache Spark:          $apache_spark_version
-.NET for Apache Spark: $dotnet_spark_version
+Apache Spark:          ${apache_spark_version}
+Apache Hadoop:         ${hadoop_version}
+.NET for Apache Spark: ${dotnet_spark_version}
 HELPMSG
 }
 

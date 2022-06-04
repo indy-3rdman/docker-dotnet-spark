@@ -6,7 +6,6 @@ LABEL maintainer="Martin Kandlbinder <indy@3rdman.de>"
 
 ARG SPARK_VERSION=3.2.1
 ENV DAEMON_RUN=true \
-    HADOOP_SHORT_VERSION=3.2 \
     SPARK_DEBUG_DISABLED="" \
     SPARK_HOME=/spark \
     SPARK_MASTER_DISABLED="" \

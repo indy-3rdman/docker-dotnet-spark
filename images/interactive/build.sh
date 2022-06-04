@@ -13,12 +13,14 @@ readonly supported_apache_spark_versions=(
     "3.0.0" "3.0.1" "3.0.2" "3.1.1" "3.1.2" "3.2.0" "3.2.1"
     )
 readonly supported_dotnet_spark_versions=("1.0.0" "1.1.1" "2.0.0" "2.1.0" "2.1.1")
+readonly supported_hadoop_short_versions=("2.7" "3.2")
 readonly dotnet_core_version=3.1
 
 dotnet_spark_version=2.1.1
 dotnet_spark_jar=""
 apache_spark_version=3.2.1
 apache_spark_short_version="${apache_spark_version:0:3}"
+hadoop_short_version=2.7
 
 main() {
     # Parse the options an set the related variables
@@ -26,6 +28,7 @@ main() {
         case $1 in
             -a|--apache-spark) opt_check_apache_spark_version "$2"; shift ;;
             -d|--dotnet-spark) opt_check_dotnet_spark_version "$2"; shift ;;
+            -o|--hadoop) opt_check_hadoop_short_version "${2}"; shift ;;
             -h|--help) print_help
                 exit 1 ;;
             *) echo "Unknown parameter passed: $1"; exit 1 ;;
@@ -102,6 +105,32 @@ opt_check_dotnet_spark_version() {
 }
 
 #######################################
+# Checks if the provided Hadoop short version number (major.minor) is supported
+# Arguments:
+#   The version number string
+# Result:
+#   Sets the global variable hadoop_version if supported,
+#       otherwise exits with a related message
+#######################################
+opt_check_hadoop_short_version() {
+    local provided_version="${1}"
+    local valid_version=""
+
+    for value in "${supported_hadoop_short_versions[@]}"
+    do
+        [[ "${provided_version}" = "$value" ]] && valid_version="${provided_version}"
+    done
+
+    if [ -z "${valid_version}" ]
+    then
+        echo "${provided_version} is an unsupported Hadoop version (major.minor)."
+        exit 1 ;
+    else
+        hadoop_short_version="${valid_version}"
+    fi
+}
+
+#######################################
 # Replaces every occurence of search_string by replacement_string in a file
 # Arguments:
 #   The file name
@@ -145,7 +174,8 @@ build_image() {
     local build_args="--build-arg dotnet_core_version=${dotnet_core_version}
         --build-arg dotnet_spark_version=${dotnet_spark_version}
         --build-arg SPARK_VERSION=${apache_spark_version}
-        --build-arg DOTNET_SPARK_JAR=${dotnet_spark_jar}"
+        --build-arg DOTNET_SPARK_JAR=${dotnet_spark_jar}
+        --build-arg HADOOP_VERSION=${hadoop_short_version}"
     local cmd="docker build ${build_args} -t ${image_name} ."
 
     echo "Building ${image_name}"
@@ -238,12 +268,14 @@ Builds a .NET for Apache Spark interactive docker image
 Options:
     -a, --apache-spark    A supported Apache Spark version to be used within the image
     -d, --dotnet-spark    The .NET for Apache Spark version to be used within the image
+    -o, --hadoop          Hadoop short version (e.g. 2.7 or 3.2)
     -h, --help            Show this usage help
 
-If -a or -d is not defined, default values are used
+In case an option is not set to a specific value, defaults are used.
 
-Apache Spark:          $apache_spark_version
-.NET for Apache Spark: $dotnet_spark_version
+Apache Spark:          ${apache_spark_version}
+Apache Hadoop:         ${hadoop_short_version}
+.NET for Apache Spark: ${dotnet_spark_version}
 HELPMSG
 }
 

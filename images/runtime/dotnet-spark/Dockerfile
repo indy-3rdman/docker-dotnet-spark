@@ -3,8 +3,9 @@ FROM dotnet-spark-base-runtime:$DOTNET_SPARK_VERSION
 LABEL maintainer="Martin Kandlbinder <indy@3rdman.de>"
 
 ARG SPARK_VERSION=3.2.1
+ARG HADOOP_VERSION=2.7
 ENV DAEMON_RUN=true \
-    HADOOP_VERSION=3.2 \
+    HADOOP_VERSION=$HADOOP_VERSION \
     SPARK_DEBUG_DISABLED="" \
     SPARK_HOME=/spark \
     SPARK_MASTER_DISABLED="" \
